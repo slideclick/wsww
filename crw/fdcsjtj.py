@@ -28,9 +28,10 @@ for c in tb.xpath('//tr/td/table/tr[@bgcolor="#f9f4e8"]/td[@width="35%"]'):
     if filter%4 == 0:
         (result.append(int(c.text.strip())))
 print(result)        
-with open('cfdcsjtj.csv','a',encoding='utf-8') as csvFile:   
-    csvout = csv.writer(csvFile)
+with open(r'c:\cfdcsjtj.csv','a',encoding='utf-8') as csvFile:   
+    #csvout = csv.writer(csvFile)
     now =   datetime.date.today()#utcnow()
     result.append(now.isoformat())#strftime()
-    #line= str(result)[1:-1]
-    csvout.writerow(result)#print(line,file=csvFile,end='\n')         
+    line= str(result)[1:-1]
+    #csvout.writerow(result)#
+    print(line,file=csvFile,end='\n')         
