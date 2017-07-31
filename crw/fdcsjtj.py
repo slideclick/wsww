@@ -15,7 +15,7 @@ headers.update(
 )#http://stackoverflow.com/questions/10606133/sending-user-agent-using-requests-library-in-python
 
 result = requests.get(url, headers=headers)
-html = result.text
+html = result.text# content会是raw字节，这时对它decode可以是中文
 
 tree=lxml.html.fromstring(html)
 divs=((tree.cssselect('div.fwgl_content')[0]).getchildren())[1]
@@ -27,11 +27,11 @@ for c in tb.xpath('//tr/td/table/tr[@bgcolor="#f9f4e8"]/td[@width="35%"]'):
     filter +=1
     if filter%4 == 0:
         (result.append(int(c.text.strip())))
-print(result)        
-with open(r'c:\cfdcsjtj.csv','a',encoding='utf-8') as csvFile:   
+print(result)
+with open(r'c:\cfdcsjtj.csv','a',encoding='utf-8') as csvFile:
     #csvout = csv.writer(csvFile)
     now =   datetime.date.today()#utcnow()
     result.append(now.isoformat())#strftime()
     line= str(result)[1:-1]
     #csvout.writerow(result)#
-    print(line,file=csvFile,end='\n')         
+    print(line,file=csvFile,end='\n')
